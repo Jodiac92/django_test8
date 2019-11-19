@@ -32,7 +32,11 @@ def ListFunc(request):
     except EmptyPage:  # 페이지가 받아지지 않은 경우
         data = paginator.page(paginator.num_pages())
         
-    return render(request, 'list2.html', {'sangpums':data})  # 페이징 처리는 list2를 사용
+    # 개별 페이지 표시용 작업
+    allpage = range(paginator.num_pages + 1)
+    #print(allpage)
+    
+    return render(request, 'list2.html', {'sangpums':data, 'allpage':allpage})  # 페이징 처리는 list2를 사용
     
 def InsertFunc(request):
     return render(request, 'insert.html')
