@@ -41,6 +41,17 @@
 				{% endif %}
 				&nbsp;&nbsp;
 				(페이지 : {{sangpums.number}} / {{sangpums.paginator.num_pages}}) <!-- {{sangpums.number}}현재페이지, {{sangpums.paginator.num_pages}}전체페이지 -->
+				
+				<hr>
+				{% for p in allpage %}
+					{% if p > 0 %}
+						{% if p == sangpums.number %}
+							[{{p}}]
+						{% elif p != sangpums.number %}
+							<a href="/sangpum/list?page={{p}}">[{{p}}]</a>
+						{% endif %} 
+					{% endif %} 
+				{% endfor %}
 			</div>
 			{% endif %}
 			</td>
