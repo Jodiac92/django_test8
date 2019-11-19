@@ -10,3 +10,4 @@ class Sangdata(models.Model):  # abc.py에서 복사 함 abc.py를 만드는법�
     class Meta:
         managed = False
         db_table = 'sangdata'
+        
