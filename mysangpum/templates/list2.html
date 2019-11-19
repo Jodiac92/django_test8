@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+* 상품 정보(페이징) *<br>
+<div style="width: 80%; text-align: right;">
+	<a href="/sangpum/insert">상품 추가</a>
+</div>
+
+<table style="width: 80%">
+	<tr style="background-color: cyan">
+		<th>code</th><th>sang</th><th>su</th><th>dan</th><th>etc</th>
+	</tr>
+	{% if sangpums %}
+		{% for s in sangpums %}
+		<tr>
+			<td>{{s.code}}</td>
+			<td>{{s.sang}}</td>
+			<td>{{s.su}}</td>
+			<td>{{s.dan}}</td>
+			<td>
+				<a href="/sangpum/update?code={{s.code}}">수정</a>
+				<a href="/sangpum/delete?code={{s.code}}">삭제</a>
+			</td>
+		</tr>
+		{% endfor %}
+		
+		<!-- 페이징 처리 -->
+		<tr>
+			<td colspan="5" style="text-align: center;">
+			{% if sangpums.paginator.num_pages > 1 %} <!-- 전체페이지수가 1보다 크면 보임 -->
+			<div>
+				{% if sangpums.has_previous %}
+					<a href="/sangpum/list?page={{sangpums.previous_page_number}}">&laquo;이전</a>
+				{% endif %}
+				{% if sangpums.has_next %}
+					<a href="/sangpum/list?page={{sangpums.next_page_number}}">다음&raquo;</a>
+				{% endif %}
+				&nbsp;&nbsp;
+				(페이지 : {{sangpums.number}} / {{sangpums.paginator.num_pages}}) <!-- {{sangpums.number}}현재페이지, {{sangpums.paginator.num_pages}}전체페이지 -->
+			</div>
+			{% endif %}
+			</td>
+		</tr>
+		
+	{% else %}
+		<tr><td colspan="5">자료가 없습니다</td></tr>
+	{% endif %}
+</table>
+</body>
+</html>
